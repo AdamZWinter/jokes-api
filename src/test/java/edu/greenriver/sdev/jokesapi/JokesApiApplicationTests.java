@@ -65,6 +65,25 @@ class JokesApiApplicationTests
         assertNotNull(response.getBody());
         assertTrue(response.getBody().getId() > 0);
     }
+
+    @Test
+    public void editJokeTest()
+    {
+        String endpoint = "http://localhost:" + port + "/jokes";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON); //"Content-Type": "application/json"
+
+        Joke joke = new Joke("Knock, knock!");
+        joke.setId(1);
+        HttpEntity request = new HttpEntity(joke, headers);
+
+        ResponseEntity<Joke> response = rest.exchange(endpoint, HttpMethod.PUT,
+                request, Joke.class);
+
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertNotNull(response.getBody());
+        assertTrue(response.getBody().getId() > 0);
+    }
 }
 
 

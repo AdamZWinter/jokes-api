@@ -25,4 +25,8 @@ public class Joke
     {
         this.jokeText = jokeText;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
